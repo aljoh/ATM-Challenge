@@ -10,6 +10,10 @@ class Person
     @account = Account.new({owner: self})
   end
 
+  def withdraw(_)
+    raise 'No account present'
+  end
+
   private
 
   def set_name(name)

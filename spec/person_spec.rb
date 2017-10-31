@@ -21,5 +21,13 @@ describe Person do
     it 'of Account class' do
       expect(subject.account).to be_an_instance_of Account
     end
+    it 'with himself as an owner' do
+      expect(subject.account.owner).to be subject
+    end
+  end
+  describe 'can not manage funds if no account is created' do
+    it " and can't withdraw funds" do
+      expect {subject.withdraw(100)}.to raise_error(RuntimeError, 'No account present')
+    end
   end
 end
