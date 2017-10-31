@@ -4,6 +4,7 @@ class Account
     @pin_code = rand(1000..9999)
     @balance = 0
     @account_status = :active
+    @exp_date = '12/18'
     set_owner(attrs[:owner])
   end
 
