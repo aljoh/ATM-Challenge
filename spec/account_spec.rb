@@ -21,4 +21,8 @@ describe Account do
   it 'deactivates account with deactivate method' do
     expect(subject.deactivate).to eq :deactivated
   end
+  it 'has an expiry date on initialize' do
+    expected_date = Date.today.next_year(5).strftime('%m/%y')
+    expect(subject.exp_date).to eq expected_date
+  end
 end
