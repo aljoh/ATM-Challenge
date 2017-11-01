@@ -35,8 +35,9 @@ class Person
     else
       atm = arg[:atm]
     end
-    atm.withdraw(arg[:amount], arg[:pin], arg[:account])
-    @cash += arg[:amount]
+    receit = atm.withdraw(arg[:amount], arg[:pin], arg[:account])
+    @cash += receit[:amount] if receit[:status] == true
+    receit
   end
 
   def deposit_cash(amount)
