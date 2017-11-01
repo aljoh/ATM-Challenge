@@ -11,10 +11,6 @@ class Person
     @account = Account.new({owner: self})
   end
 
-  def find_atm
-    @atm = Atm.new
-  end
-
   def withdraw(arg = {})
     if @account == nil
       missing_account

@@ -1,3 +1,5 @@
+require_relative 'person.rb'
+require_relative 'account.rb'
 class Atm
   require 'date'
   attr_accessor :funds

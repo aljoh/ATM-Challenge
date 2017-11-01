@@ -1,3 +1,5 @@
+require_relative 'person.rb'
+require_relative 'atm.rb'
 class Account
   require 'date'
   attr_accessor :pin_code, :balance, :account_status, :owner, :exp_date

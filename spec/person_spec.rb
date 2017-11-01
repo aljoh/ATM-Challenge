@@ -48,11 +48,12 @@ describe Person do
       expect { command.call }.to raise_error 'An ATM is required'
     end
     it 'funds are added to cash - deducted from account balance' do
-      subject.cash = 100
-      subject.deposit(100)
+      subject.cash = 200
+      subject.deposit(200)
       subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm)
-      expect(subject.account.balance).to be 0
+      expect(subject.account.balance).to be 100
       expect(subject.cash).to be 100
+      expect(atm.funds).to eq 900
     end
   end
 end
