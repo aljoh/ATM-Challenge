@@ -15,9 +15,11 @@ class Person
     @atm = Atm.new
   end
 
-  def withdraw(_)
+  def withdraw(arg = {})
     if @account == nil
       missing_account
+    else
+      withdraw_cash(arg)
     end
   end
 
@@ -30,6 +32,15 @@ class Person
   end
 
   private
+
+  def withdraw_cash(arg)
+    if arg[:atm] == nil
+      raise 'An ATM is required'
+    else
+      atm = arg[:atm]
+    end
+    atm.withdraw(arg[:amount], arg[:pin], arg[:account])
+  end
 
   def deposit_cash(amount)
     @cash -=amount
