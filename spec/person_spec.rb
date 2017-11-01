@@ -30,4 +30,13 @@ describe Person do
       expect {subject.withdraw(100)}.to raise_error(RuntimeError, 'No account present')
     end
   end
+  describe 'can manage funds if an account been created' do
+    before { subject.create_account }
+    it 'funds are added to the account balance - deducted from cash' do
+      subject.cash = 100
+      subject.deposit(100)
+      expect(subject.account.balance).to be 100
+      expect(subject.cash).to be 0
+    end
+  end
 end

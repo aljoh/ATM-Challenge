@@ -1,6 +1,7 @@
 require_relative 'account.rb'
+require_relative 'atm.rb'
 class Person
-  attr_accessor :name, :cash, :account
+  attr_accessor :name, :cash, :account, :atm
   def initialize(name = nil)
     set_name(name)
     @cash = 0
@@ -10,17 +11,44 @@ class Person
     @account = Account.new({owner: self})
   end
 
+  def find_atm
+    @atm = Atm.new
+  end
+
   def withdraw(_)
-    raise 'No account present'
+    if @account == nil
+      missing_account
+    end
+  end
+
+  def deposit(amount)
+    if @account == nil
+      missing_account
+    else
+      deposit_cash(amount)
+    end
   end
 
   private
 
+  def deposit_cash(amount)
+    @cash -=amount
+    @account.balance += amount
+  end
+
   def set_name(name)
     if name == nil
-      raise 'A name is required'
+      missing_name
     else
       @name = name
     end
+  end
+
+  def missing_account
+    raise 'No account present'
+  end
+
+  def missing_name
+    raise 'A name is required'
   end
 end
