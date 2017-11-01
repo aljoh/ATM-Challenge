@@ -40,6 +40,7 @@ class Person
       atm = arg[:atm]
     end
     atm.withdraw(arg[:amount], arg[:pin], arg[:account])
+    @cash += arg[:amount]
   end
 
   def deposit_cash(amount)

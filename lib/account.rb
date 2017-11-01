@@ -1,5 +1,5 @@
 class Account
-  attr_accessor :pin_code, :balance, :account_status, :owner
+  attr_accessor :pin_code, :balance, :account_status, :owner, :exp_date
   def initialize(attrs = {})
     @pin_code = rand(1000..9999)
     @balance = 0
