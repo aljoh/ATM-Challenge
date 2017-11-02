@@ -13,6 +13,10 @@ describe Person do
   it 'has a :cash attribute value 0 on initialize' do
     expect(subject.cash).to eq 0
   end
+  it 'has a work method to increase cash by 100' do
+    subject.work
+    expect(subject.cash).to eq 100
+  end
   it 'has an :account attribute' do
     expect(subject.account).to be nil
   end
