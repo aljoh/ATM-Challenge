@@ -63,9 +63,13 @@ class Atm
     denominations = [20, 10, 5]
     bills = []
     for bill in denominations do
-      while amount - bill >= 0
-        amount -= bill
-        bills << bill
+      loop do
+        if (amount - bill) >= 0
+          amount -= bill
+          bills << bill
+        else
+          break
+        end
       end
     end
     bills
