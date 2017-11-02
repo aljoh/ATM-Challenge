@@ -13,7 +13,7 @@ class Person
   end
 
   def withdraw(arg = {})
-    if @account == nil
+    if @account.nil?
       missing_account
     else
       withdraw_cash(arg)
@@ -21,7 +21,7 @@ class Person
   end
 
   def deposit(amount)
-    if @account == nil
+    if @account.nil?
       missing_account
     else
       deposit_cash(amount)
@@ -35,7 +35,7 @@ class Person
   private
 
   def withdraw_cash(arg)
-    if arg[:atm] == nil
+    if arg[:atm].nil?
       missing_atm
     else
       atm = arg[:atm]
@@ -46,12 +46,12 @@ class Person
   end
 
   def deposit_cash(amount)
-    @cash -=amount
+    @cash -= amount
     @account.balance += amount
   end
 
   def set_name(name)
-    if name == nil
+    if name.nil?
       missing_name
     else
       @name = name

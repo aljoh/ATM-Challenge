@@ -1,5 +1,4 @@
-require_relative 'person.rb'
-require_relative 'atm.rb'
+
 class Account
   require 'date'
   attr_accessor :balance, :account_status
@@ -24,10 +23,10 @@ class Account
   end
 
   def set_owner(obj)
-    obj == nil ? missing_owner : @owner = obj
+    obj.nil? ? missing_owner : @owner = obj
   end
 
   def missing_owner
-    raise "An Account owner is required"
+    raise 'An Account owner is required'
   end
 end

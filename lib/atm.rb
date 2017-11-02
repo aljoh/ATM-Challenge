@@ -1,5 +1,4 @@
-require_relative 'person.rb'
-require_relative 'account.rb'
+
 class Atm
   require 'date'
   attr_accessor :funds
@@ -9,18 +8,17 @@ class Atm
   end
 
   def withdraw(amount, pin_code, account)
-    case
-    when insufficient_funds_in_account?(amount, account)
+    if insufficient_funds_in_account?(amount, account)
       { status: false, message: 'insufficient funds', date: Date.today }
-    when insufficient_funds_in_atm?(amount)
+    elsif insufficient_funds_in_atm?(amount)
       { status: false, message: 'insufficient funds in ATM', date: Date.today }
-    when incorrect_pin?(pin_code, account.pin_code)
+    elsif incorrect_pin?(pin_code, account.pin_code)
       { status: false, message: 'wrong pin', date: Date.today }
-    when card_expired?(account.exp_date)
+    elsif card_expired?(account.exp_date)
       { status: false, message: 'card expired', date: Date.today }
-    when account_disabled?(account.account_status)
+    elsif account_disabled?(account.account_status)
       { status: false, message: 'account disabled', date: Date.today }
-    when invalid_amount?(amount)
+    elsif invalid_amount?(amount)
       { status: false, message: 'invalid amount', date: Date.today }
     else
       perform_transaction(amount, account)
