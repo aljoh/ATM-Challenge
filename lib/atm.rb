@@ -20,12 +20,18 @@ class Atm
       { status: false, message: 'card expired', date: Date.today }
     when account_disabled?(account.account_status)
       { status: false, message: 'account disabled', date: Date.today }
+    when invalid_amount?(amount)
+      { status: false, message: 'invalid amount', date: Date.today }
     else
       perform_transaction(amount, account)
     end
   end
 
   private
+
+  def invalid_amount?(amount)
+    amount % 5 != 0
+  end
 
   def insufficient_funds_in_account?(amount, account)
     amount > account.balance
