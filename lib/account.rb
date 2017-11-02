@@ -2,7 +2,8 @@ require_relative 'person.rb'
 require_relative 'atm.rb'
 class Account
   require 'date'
-  attr_accessor :pin_code, :balance, :account_status, :owner, :exp_date
+  attr_accessor :balance, :account_status
+  attr_reader :pin_code, :exp_date, :owner
   STANDARD_VALIDITY_YRS = 5
   def initialize(attrs = {})
     @pin_code = rand(1000..9999)

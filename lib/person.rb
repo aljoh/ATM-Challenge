@@ -1,14 +1,15 @@
 require_relative 'account.rb'
 require_relative 'atm.rb'
 class Person
-  attr_accessor :name, :cash, :account, :atm
+  attr_accessor :cash
+  attr_reader :name, :account
   def initialize(name = nil)
     set_name(name)
     @cash = 0
   end
 
   def create_account
-    @account = Account.new({owner: self})
+    @account = Account.new(owner: self)
   end
 
   def withdraw(arg = {})
@@ -27,11 +28,15 @@ class Person
     end
   end
 
+  def work
+    @cash += 100
+  end
+
   private
 
   def withdraw_cash(arg)
     if arg[:atm] == nil
-      raise 'An ATM is required'
+      missing_atm
     else
       atm = arg[:atm]
     end
@@ -59,5 +64,9 @@ class Person
 
   def missing_name
     raise 'A name is required'
+  end
+
+  def missing_atm
+    raise 'An ATM is required'
   end
 end
